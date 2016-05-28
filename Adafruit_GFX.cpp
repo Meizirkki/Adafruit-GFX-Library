@@ -31,11 +31,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef __AVR__
- #include <avr/pgmspace.h>
-#elif defined(ESP8266)
- #include <pgmspace.h>
-#endif
 #include "Adafruit_GFX.h"
 #include "glcdfont.c"
 
@@ -466,11 +461,7 @@ void Adafruit_GFX::drawXBitmap(int16_t x, int16_t y,
   }
 }
 
-#if ARDUINO >= 100
 size_t Adafruit_GFX::write(uint8_t c) {
-#else
-void Adafruit_GFX::write(uint8_t c) {
-#endif
 
   if(!gfxFont) { // 'Classic' built-in font
 
@@ -516,9 +507,7 @@ void Adafruit_GFX::write(uint8_t c) {
     }
 
   }
-#if ARDUINO >= 100
   return 1;
-#endif
 }
 
 // Draw a character
